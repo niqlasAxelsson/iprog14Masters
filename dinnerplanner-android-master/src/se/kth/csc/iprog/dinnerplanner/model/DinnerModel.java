@@ -3,9 +3,10 @@ package se.kth.csc.iprog.dinnerplanner.model;
 import java.util.HashSet;
 import java.util.Set;
 
-public class DinnerModel {
-	
+public class DinnerModel implements IDinnerModel {
+	private int nrGuests =0;
 
+	
 	Set<Dish> dishes = new HashSet<Dish>();
 	
 	/**
@@ -94,6 +95,42 @@ public class DinnerModel {
 		}
 		return result;
 	}
+	public int getNumberOfGuests(){
+		return nrGuests;
+	}
+	public void setNumberOfGuests(int numberOfGuests){
+		nrGuests = numberOfGuests;
+	}
+	
+	/**
+	 * Returns the dish that is on the menu for selected type (1 = starter, 2 = main, 3 = desert).
+	 */
+	public Dish getSelectedDish(int type);
+	
+	/**
+	 * Returns all the dishes on the menu.
+	 */
+	public Set<Dish> getFullMenu(){
+		return dishes;
+	}
+	
+	/**
+	 * Returns all ingredients for all the dishes on the menu.
+	 */
+	public Set<Ingredient> getAllIngredients(){
+		Set<Ingredient> ingredients = new HashSet<Ingredient>();
+		for (Dish dish: dishes){
+			for(Ingredient ingredient : dish.ingredients){
+				ingredients.add(ingredient);
+			}
+		}
+	}
+	
+	/**
+	 * Returns the total price of the menu (all the ingredients multiplied by number of guests).
+	 */
+	public float getTotalMenuPrice();
+	
 	
 	
 
